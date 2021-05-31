@@ -1,0 +1,8 @@
+{"@t":"2021-05-31T11:38:30.0091330Z","@mt":"Logger configured"}
+{"@t":"2021-05-31T11:39:25.2553483Z","@mt":"Logger configured"}
+{"@t":"2021-05-31T11:41:16.5195798Z","@mt":"Executing command {@Command}","Command":{"Email":"vladimir.lyashko02@gmail.com","Name":"vlyashko02","Id":"9630be8b-fe79-432c-9bf4-978ff08187eb","$type":"RegisterCustomerCommand"},"Context":"Command:9630be8b-fe79-432c-9bf4-978ff08187eb","CorrelationId":"e956a62b-0917-49d5-a766-94010f84baab"}
+{"@t":"2021-05-31T11:41:17.0134102Z","@mt":"Command processed successful, result {Result}","Result":"CQRS.Application.Customers.CustomerDto","Context":"Command:9630be8b-fe79-432c-9bf4-978ff08187eb","CorrelationId":"e956a62b-0917-49d5-a766-94010f84baab"}
+{"@t":"2021-05-31T11:41:45.0305252Z","@mt":"Executing command {@Command}","Command":{"CustomerId":{"Value":"fdf26aa1-3fbf-44e5-b707-f230e01967c5","$type":"CustomerId"},"Id":"6a4796c9-9ec6-429a-befb-98bf662635d8","$type":"MarkCustomerAsWelcomedCommand"},"Context":"Command:6a4796c9-9ec6-429a-befb-98bf662635d8"}
+{"@t":"2021-05-31T11:41:45.2557163Z","@mt":"Command processed successful, result {Result}","Result":"()","Context":"Command:6a4796c9-9ec6-429a-befb-98bf662635d8"}
+{"@t":"2021-05-31T11:58:35.5867385Z","@mt":"Logger configured"}
+{"@t":"2021-05-31T14:22:24.3747928Z","@mt":"Logger configured"}
