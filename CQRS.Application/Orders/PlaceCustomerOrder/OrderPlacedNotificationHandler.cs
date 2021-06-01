@@ -11,16 +11,13 @@ namespace CQRS.Application.Orders.PlaceCustomerOrder
     public class OrderPlacedNotificationHandler : INotificationHandler<OrderPlacedNotification>
     {
         private readonly IEmailSender _emailSender;
-        private readonly EmailsSettings _emailsSettings;
         private readonly ISqlConnectionFactory _sqlConnectionFactory;
 
         public OrderPlacedNotificationHandler(
             IEmailSender emailSender,
-            EmailsSettings emailsSettings,
             ISqlConnectionFactory sqlConnectionFactory)
         {
             _emailSender = emailSender;
-            _emailsSettings = emailsSettings;
             _sqlConnectionFactory = sqlConnectionFactory;
         }
 
@@ -39,9 +36,9 @@ namespace CQRS.Application.Orders.PlaceCustomerOrder
                 });
 
             var emailMessage = new EmailMessage(
-                _emailsSettings.FromAddressEmail,
                 customerEmail,
-                OrderNotificationsService.GetOrderEmailConfirmationDescription(request.OrderId));
+                OrderNotificationsService.GetOrderEmailConfirmationDescription(request.OrderId),
+                "Order Information");
 
             await _emailSender.SendEmailAsync(emailMessage);
         }

@@ -2,20 +2,20 @@
 {
     public struct EmailMessage
     {
-        public string From { get; }
-
         public string To { get; }
 
         public string Content { get; }
 
+        public string Subject { get; }
+
         public EmailMessage(
-            string from,
             string to,
-            string content)
+            string content,
+            string subject)
         {
-            From = from;
             To = to;
             Content = content;
+            Subject = subject;
         }
     }
 }

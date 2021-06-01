@@ -22,15 +22,11 @@ namespace CQRS.Application.Payments.SendEmailAfterPayment
 
         public async Task<Unit> Handle(SendEmailAfterPaymentCommand request, CancellationToken cancellationToken)
         {
-            // Logic of preparing an email. This is only mock.
-            var emailMessage = new EmailMessage("from@email.com", "to@email.com", "content");
-
+            // TODO: email
+            var emailMessage = new EmailMessage("to@email.com", "content", "Payment");
             await _emailSender.SendEmailAsync(emailMessage);
-
             var payment = await _paymentRepository.GetByIdAsync(request.PaymentId);
-
             payment.MarkEmailNotificationIsSent();
-
             return Unit.Value;
         }
     }
