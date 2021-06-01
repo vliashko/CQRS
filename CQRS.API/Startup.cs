@@ -58,7 +58,6 @@ namespace CQRS.API
                 x.Map<BusinessRuleValidationException>(ex => new BusinessRuleValidationExceptionProblemDetails(ex));
             });
 
-
             services.AddHttpContextAccessor();
             var serviceProvider = services.BuildServiceProvider();
 
@@ -93,9 +92,9 @@ namespace CQRS.API
 
             app.UseRouting();
 
-            app.UseEndpoints(endpoints => { endpoints.MapControllers(); });
-
             app.UseSwaggerDocumentation();
+
+            app.UseEndpoints(endpoints => { endpoints.MapControllers(); });
         }
 
         private static ILogger ConfigureLogger()

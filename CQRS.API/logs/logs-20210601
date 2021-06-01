@@ -20,3 +20,7 @@
 {"@t":"2021-06-01T09:49:09.9037437Z","@mt":"Command processed successful, result {Result}","Result":"024dcff2-0026-4cfd-b0cc-ea5eee49b5bb","Context":"Command:7aaa22ad-2d56-4c99-b44a-dd91ecbfced9","CorrelationId":"b291d7d6-e67e-423a-8878-cd577aac88b4"}
 {"@t":"2021-06-01T09:49:30.0312802Z","@mt":"Executing command {@Command}","Command":{"PaymentId":{"Value":"9290d03f-2a84-4474-971a-805109e9985b","$type":"PaymentId"},"Id":"f05ad668-2480-4be4-9719-e7b573de4f36","$type":"SendEmailAfterPaymentCommand"},"Context":"Command:f05ad668-2480-4be4-9719-e7b573de4f36"}
 {"@t":"2021-06-01T09:49:30.0736952Z","@mt":"Command processed successful, result {Result}","Result":"()","Context":"Command:f05ad668-2480-4be4-9719-e7b573de4f36"}
+{"@t":"2021-06-01T10:12:35.8856899Z","@mt":"Logger configured"}
+{"@t":"2021-06-01T10:19:40.2869187Z","@mt":"Logger configured"}
+{"@t":"2021-06-01T10:20:32.2327419Z","@mt":"Logger configured"}
+{"@t":"2021-06-01T10:25:44.5059030Z","@mt":"Logger configured"}
