@@ -18,8 +18,6 @@ namespace CQRS.Application.Customers.IntegrationHandlers
 
         public async Task Handle(CustomerRegisteredNotification notification, CancellationToken cancellationToken)
         {
-            // Send welcome e-mail message...
-
             await _commandsScheduler.EnqueueAsync(new MarkCustomerAsWelcomedCommand(
                 Guid.NewGuid(),
                 notification.CustomerId));

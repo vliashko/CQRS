@@ -6,7 +6,7 @@ namespace CQRS.Domain.SeedWork
     {
         public DomainEventBase()
         {
-            OccurredOn = DateTime.Now;
+            OccurredOn = DateTime.UtcNow;
         }
 
         public DateTime OccurredOn { get; }

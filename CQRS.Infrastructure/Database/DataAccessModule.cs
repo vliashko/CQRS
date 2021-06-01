@@ -14,7 +14,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace CQRS.Infrastructure.Database
 {
-    public class DataAccessModule : Autofac.Module
+    public class DataAccessModule : Module
     {
         private readonly string _databaseConnectionString;
 
