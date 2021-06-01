@@ -1,7 +1,10 @@
 ﻿using CQRS.Domain.ForeignExchange;
 using CQRS.Infrastructure.Caching;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
+using System.Globalization;
+using System.Net;
 
 namespace CQRS.Infrastructure.Domain.ForeignExchanges
 {
@@ -32,12 +35,18 @@ namespace CQRS.Infrastructure.Domain.ForeignExchanges
 
         private static List<ConversionRate> GetConversionRatesFromExternalApi()
         {
-            // Communication with external API. Here is only mock.
+            WebClient client = new WebClient();
+            string result1 = client.DownloadString("https://api.exchangerate.host/latest?base=USD&symbols=EUR");
+            string result2 = client.DownloadString("https://api.exchangerate.host/latest?base=EUR&symbols=USD");
+            dynamic result = JsonConvert.DeserializeObject(result1);
+            string eur = result.rates.EUR;
+            result = JsonConvert.DeserializeObject(result2);
+            string usd = result.rates.USD;
 
             var conversionRates = new List<ConversionRate>
             {
-                new ConversionRate("USD", "EUR", (decimal)0.82),
-                new ConversionRate("EUR", "USD", (decimal)1.21)
+                new ConversionRate("USD", "EUR", decimal.Parse(eur, CultureInfo.InvariantCulture)),
+                new ConversionRate("EUR", "USD", decimal.Parse(usd, CultureInfo.InvariantCulture))
             };
 
             return conversionRates;
