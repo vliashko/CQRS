@@ -1,4 +1,5 @@
 ﻿using CQRS.Domain.SeedWork;
+using System.Collections.Generic;
 
 namespace CQRS.Domain.Products
 {
@@ -7,6 +8,8 @@ namespace CQRS.Domain.Products
         public ProductId Id { get; private set; }
 
         public string Name { get; private set; }
+
+        private List<ProductPrice> _prices;
 
         private Product()
         {
