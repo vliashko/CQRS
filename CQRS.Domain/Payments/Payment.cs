@@ -27,8 +27,7 @@ namespace CQRS.Domain.Payments
             _orderId = orderId;
             _status = PaymentStatus.ToPay;
             _emailNotificationIsSent = false;
-            // TODO: work with email and payment system;
-            // AddDomainEvent(new PaymentCreatedEvent(Id, _orderId));
+             AddDomainEvent(new PaymentCreatedEvent(Id, _orderId));
         }
 
         public void MarkEmailNotificationIsSent()
