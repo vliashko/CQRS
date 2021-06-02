@@ -6,6 +6,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Braintree" Version="5.6.0" />
     <PackageReference Include="MediatR" Version="8.0.0" />
   </ItemGroup>
 

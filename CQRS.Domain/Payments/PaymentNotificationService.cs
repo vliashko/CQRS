@@ -6,7 +6,7 @@ namespace CQRS.Domain.Payments
     {
         public static string GetPaymentEmailConfirmationDescription(PaymentId paymentId, OrderId orderId)
         {
-            return $"Payment number: {paymentId.Value} was created for order with number: {orderId.Value}";
+            return $"Payment with number: {paymentId.Value} was created for order with number: {orderId.Value}";
         }
     }
 }
