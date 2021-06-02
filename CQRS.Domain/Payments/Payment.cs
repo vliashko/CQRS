@@ -12,7 +12,7 @@ namespace CQRS.Domain.Payments
 
         private readonly DateTime _createDate;
 
-        private readonly PaymentStatus _status;
+        private PaymentStatus _status;
 
         private bool _emailNotificationIsSent;
 
@@ -33,6 +33,11 @@ namespace CQRS.Domain.Payments
         public void MarkEmailNotificationIsSent()
         {
             _emailNotificationIsSent = true;
+        }
+
+        public void ChangePaymentStatus(PaymentStatus status)
+        {
+            _status = status;
         }
     }
 }

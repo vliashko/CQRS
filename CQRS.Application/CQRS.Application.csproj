@@ -14,8 +14,4 @@
     <ProjectReference Include="..\CQRS.Domain\CQRS.Domain.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Payments\PaymentSystem\" />
-  </ItemGroup>
-
 </Project>
