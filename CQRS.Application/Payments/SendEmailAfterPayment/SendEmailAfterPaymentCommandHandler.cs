@@ -1,6 +1,7 @@
 ﻿using CQRS.Application.Configuration.Commands;
 using CQRS.Application.Configuration.Data;
 using CQRS.Application.Configuration.Emails;
+using CQRS.Domain.Customers.Orders;
 using CQRS.Domain.Payments;
 using Dapper;
 using MediatR;
@@ -50,7 +51,9 @@ namespace CQRS.Application.Payments.SendEmailAfterPayment
                 Id = request.PaymentId.Value
             });
 
-            var emailMessage = new EmailMessage(customerEmail, $"You need to pay for order with number: {orderId}", "Payment");
+            var emailMessage = new EmailMessage(customerEmail, 
+                PaymentNotificationService.GetPaymentEmailConfirmationDescription(payment.Id, new OrderId(orderId)), 
+                "Payment");
             await _emailSender.SendEmailAsync(emailMessage);
             payment.MarkEmailNotificationIsSent();
 
