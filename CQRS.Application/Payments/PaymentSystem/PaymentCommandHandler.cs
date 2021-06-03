@@ -30,23 +30,25 @@ namespace CQRS.Application.Payments.PaymentSystem
 
         public async Task<Unit> Handle(PaymentCommand request, CancellationToken cancellationToken)
         {
+            var connection = _sqlConnectionFactory.GetOpenConnection();
+
             var payment = await _paymentRepository.GetByIdAsync(request.PaymentId);
 
             var gateway = _config.GetGateway();
 
-            var paymentMethod = new PaymentMethodRequest
+            var sql = "SELECT [Order].[Value]" +
+                      "FROM orders.Orders AS [Order], payments.Payments AS [Payment]" +
+                      "WHERE [Payment].[Id] = @Id AND [Payment].[OrderId] = [Order].[Id]";
+            var amount = await connection.QueryFirstAsync<decimal>(sql,
+            new
             {
-                ExpirationDate = request.PaymentRequest.Date,
-                Number = request.PaymentRequest.CardNumber,
-                Token = request.PaymentRequest.ClientToken
-            };
-
-            Result<PaymentMethod> paymentMethodResult = gateway.PaymentMethod.Create(paymentMethod);
+                Id = request.PaymentId.Value
+            });
 
             var transRequest = new TransactionRequest
             {
-                Amount = request.PaymentRequest.Amount,
-                PaymentMethodNonce = request.ToString(),
+                Amount = amount,
+                PaymentMethodNonce = request.PaymentRequest.Nonce,
                 Options = new TransactionOptionsRequest
                 {
                     SubmitForSettlement = true
@@ -56,11 +58,9 @@ namespace CQRS.Application.Payments.PaymentSystem
             Result<Transaction> result = gateway.Transaction.Sale(transRequest);
             if(result.IsSuccess())
             {
-                var connection = _sqlConnectionFactory.GetOpenConnection();
-
                 payment.ChangePaymentStatus(PaymentStatus.Paid);
 
-                var sql = "SELECT [Product].[Name], [ProductOrder].[Quantity], [ProductOrder].[Value], [ProductOrder].[Currency]" +
+                sql = "SELECT [Product].[Name], [ProductOrder].[Quantity], [ProductOrder].[Value], [ProductOrder].[Currency]" +
                           "FROM orders.Products AS [Product], orders.OrderProducts AS [ProductOrder], payments.Payments AS [Payment]" +
                           "WHERE [Payment].[Id] = @Id AND [ProductOrder].[OrderId] = [Payment].[OrderId] AND [Product].[Id] = [ProductOrder].[ProductId]";
                 var queryResult = connection.Query<ProductDto>(sql, new { Id = request.PaymentId.Value });
