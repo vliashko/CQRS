@@ -21,7 +21,6 @@ namespace CQRS.API.Customers
         /// <summary>
         /// Register customer.
         /// </summary>
-        [Route("")]
         [HttpPost]
         [ProducesResponseType(typeof(CustomerDto), (int)HttpStatusCode.Created)]
         public async Task<IActionResult> RegisterCustomer([FromBody] RegisterCustomerRequest request)

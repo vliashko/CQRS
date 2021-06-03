@@ -23,6 +23,7 @@ namespace CQRS.API.Payments
         public async Task<IActionResult> GenerateToken()
         {
             var token = await _mediator.Send(new GenerateTokenCommand());
+
             return Created(string.Empty, token.Token);
         }
 
@@ -30,7 +31,8 @@ namespace CQRS.API.Payments
         public async Task<IActionResult> Create(Guid paymentId, [FromBody] PaymentRequest payment)
         {
             await _mediator.Send(new PaymentCommand(new PaymentId(paymentId), payment));
-            return Ok(string.Empty);
+
+            return Ok();
         }
     }
 }

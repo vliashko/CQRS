@@ -86,6 +86,6 @@ namespace CQRS.Application.Payments.PaymentSystem
                 await _emailSender.SendEmailAsync(emailMessage);
             }
             return Unit.Value;
-        }
+        } 
     }
 }

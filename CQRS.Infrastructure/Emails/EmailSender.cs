@@ -14,7 +14,7 @@ namespace CQRS.Infrastructure.Emails
         {
             var emailMessage = new MimeMessage();
 
-            emailMessage.From.Add(new MailboxAddress("Administration of Clothes Store", emailLogin));
+            emailMessage.From.Add(new MailboxAddress("Clothes Store", emailLogin));
             emailMessage.To.Add(new MailboxAddress("", message.To));
             emailMessage.Subject = message.Subject;
 
